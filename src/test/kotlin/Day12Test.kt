@@ -49,10 +49,23 @@ internal class Day12Test {
         )
 
         // When
-        val shipDistance = operation.getShipDistance2(input, "E", Waypoint(north = 1, east = 10))
+        val shipDistance = operation.getShipDistance2(input, Waypoint(x = 10, y = 1))
 
         // Then
         assertEquals(286L, shipDistance)
+    }
+
+    @Test
+    fun test4() {
+        // Given
+        val input = File(Day12Test::class.java.getResource("day-12-input.txt").file)
+            .readLines()
+
+        // When
+        val shipDistance = operation.getShipDistance2(input, Waypoint(x = 10, y = 1))
+
+        // Then
+        assertEquals(145117L, shipDistance)
     }
 
     @Test

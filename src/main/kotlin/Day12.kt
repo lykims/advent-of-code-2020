@@ -1,4 +1,7 @@
 // Day 12: Rain Risk
+
+import kotlin.math.abs
+
 class Day12 {
 
     private val instructionRegex = Regex("(\\S)(\\d+)")
@@ -26,16 +29,14 @@ class Day12 {
 
     fun getShipDistance2(
         input: List<String>,
-        startingDirection: String,
         waypoint: Waypoint
     ): Long {
         val ship = Ship()
-        var currentDirection = startingDirection
         for (instruction in input) {
             val (action, actionValue) = instructionRegex.find(instruction)!!.destructured
             val value = actionValue.toInt()
             if (action == "L" || action == "R") {
-                currentDirection = changeWaypointDirection(waypoint, currentDirection, action, value)
+                changeWaypointDirection(waypoint, action, value)
             } else if (action == "F") {
                 move(ship, waypoint, value)
             } else {
@@ -67,28 +68,18 @@ class Day12 {
 
     private fun changeWaypointDirection(
         waypoint: Waypoint,
-        currentDirection: String,
         action: String,
         value: Int
-    ): String {
-        var directionValue = value / 90
-        if (action == "L") {
-            directionValue *= -1
+    ) {
+        val isClockwise = action == "R"
+        var angle = value
+        while (angle >= 90) {
+            val x = if (isClockwise) waypoint.y else -waypoint.y
+            val y = if (isClockwise) -waypoint.x else waypoint.x
+            waypoint.x = x
+            waypoint.y = y
+            angle -= 90
         }
-        val newNorthIndex = Math.abs(0 + directionValue) % 4
-        val newEastIndex = Math.abs(1 + directionValue) % 4
-        val newSouthIndex = Math.abs(2 + directionValue) % 4
-        val newWestIndex = Math.abs(3 + directionValue) % 4
-        val newPoints = LongArray(4)
-        newPoints[newNorthIndex] = waypoint.north
-        newPoints[newEastIndex] = waypoint.east
-        newPoints[newSouthIndex] = waypoint.south
-        newPoints[newWestIndex] = waypoint.west
-        waypoint.north = newPoints[0]
-        waypoint.east = newPoints[1]
-        waypoint.south = newPoints[2]
-        waypoint.west = newPoints[3]
-        return changeDirection(currentDirection, action, value)
     }
 
     private fun move(
@@ -97,10 +88,10 @@ class Day12 {
         value: Int
     ) {
         when (direction) {
-            "N" -> point.north += value
-            "S" -> point.south += value
-            "E" -> point.east += value
-            "W" -> point.west += value
+            "N" -> point.y += value
+            "S" -> point.y -= value
+            "E" -> point.x += value
+            "W" -> point.x -= value
         }
     }
 
@@ -109,32 +100,24 @@ class Day12 {
         waypoint: Waypoint,
         value: Int
     ) {
-        ship.north += waypoint.north * value
-        ship.south += waypoint.south * value
-        ship.east += waypoint.east * value
-        ship.west += waypoint.west * value
+        ship.x += waypoint.x * value
+        ship.y += waypoint.y * value
     }
 }
 
 data class Ship(
-    override var north: Long = 0L,
-    override var south: Long = 0L,
-    override var east: Long = 0L,
-    override var west: Long = 0L
+    override var x: Long = 0L,
+    override var y: Long = 0L
 ) : Point {
-    fun getTotalDistance() = Math.abs(north - south) + Math.abs(east - west)
+    fun getTotalDistance() = abs(x) + abs(y)
 }
 
 data class Waypoint(
-    override var north: Long = 0L,
-    override var south: Long = 0L,
-    override var east: Long = 0L,
-    override var west: Long = 0L
+    override var x: Long = 0L,
+    override var y: Long = 0L
 ) : Point
 
 private interface Point {
-    var north: Long
-    var south: Long
-    var east: Long
-    var west: Long
+    var x: Long
+    var y: Long
 }

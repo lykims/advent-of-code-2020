@@ -53,8 +53,8 @@ private class Passport(
     }
 
     fun hasValidValues(): Boolean {
-        return hasValidFields()
-                && FIELD_POLICIES.all { (field, policy) -> fields[field]?.let { policy.matches(it) } == true }
+        return hasValidFields() &&
+            FIELD_POLICIES.all { (field, policy) -> fields[field]?.let { policy.matches(it) } == true }
     }
 
     companion object {

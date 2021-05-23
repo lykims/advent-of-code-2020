@@ -33,6 +33,6 @@ class Day3 {
             getNumberOfTreesEncountered(input, 7, 1),
             getNumberOfTreesEncountered(input, 1, 2)
         )
-        return results.reduce { acc, i ->  acc * i }
+        return results.reduce { acc, i -> acc * i }
     }
 }

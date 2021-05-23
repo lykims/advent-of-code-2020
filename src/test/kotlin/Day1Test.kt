@@ -31,7 +31,7 @@ internal class Day1Test {
         // Given
         val input: List<Int> = File(Day1Test::class.java.getResource("day-1-input.txt").file)
             .readLines()
-            .map{ it.toInt() }
+            .map { it.toInt() }
         val sumTarget = 2020
 
         // When
@@ -66,7 +66,7 @@ internal class Day1Test {
         // Given
         val input: List<Int> = File(Day1Test::class.java.getResource("day-1-input.txt").file)
             .readLines()
-            .map{ it.toInt() }
+            .map { it.toInt() }
         val sumTarget = 2020
 
         // When

@@ -12,9 +12,10 @@ class Day6 {
         input: List<String>
     ): Int {
         val groups = toGroups(input)
-        return groups.sumBy {
+        return groups.sumOf {
             it.answers.reduce {
-                a, b -> a.toSet().intersect(b.toSet()).joinToString("")
+                a, b ->
+                a.toSet().intersect(b.toSet()).joinToString("")
             }.length
         }
     }

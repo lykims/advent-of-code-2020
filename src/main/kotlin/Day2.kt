@@ -25,8 +25,9 @@ class Day2 {
         for (passwordInput in input) {
             val entry = toPasswordEntry2(passwordInput)
             val passwordPolicy = entry.policy as PasswordPolicy2
-            if (passwordPolicy.secondPosition < entry.password.length
-                    && hasOneCharacterOccurrence(passwordPolicy, entry.password)) {
+            if (passwordPolicy.secondPosition < entry.password.length &&
+                hasOneCharacterOccurrence(passwordPolicy, entry.password)
+            ) {
                 numberOfValidPasswords++
             }
         }

@@ -34,7 +34,8 @@ class Day7 {
         bagColor: String
     ): Int {
         return rules[bagColor]?.content?.let {
-                content -> content.sumBy { it.quantity + it.quantity * getBagColorCount(rules, it.color)}
+            content ->
+            content.sumOf { it.quantity + it.quantity * getBagColorCount(rules, it.color) }
         } ?: 0
     }
 

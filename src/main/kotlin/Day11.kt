@@ -33,7 +33,7 @@ class Day11 {
                 }
             }
         }
-        return nextLayout.sumBy { row -> row.count { space -> space == '#' } }
+        return nextLayout.sumOf { row -> row.count { space -> space == '#' } }
     }
 
     private fun isEmptySeatToOccupy(
@@ -41,8 +41,8 @@ class Day11 {
         previousLayout: Array<CharArray>,
         hasGreaterOrEqualOccupiedSeats: (number: Int, layout: Array<CharArray>, spacePoint: SpacePoint) -> Boolean
     ): Boolean {
-        return previousLayout[spacePoint.y][spacePoint.x] == 'L'
-                && !hasGreaterOrEqualOccupiedSeats(1, previousLayout, spacePoint)
+        return previousLayout[spacePoint.y][spacePoint.x] == 'L' &&
+            !hasGreaterOrEqualOccupiedSeats(1, previousLayout, spacePoint)
     }
 
     private fun isOccupiedSeatToEmpty(
@@ -51,8 +51,8 @@ class Day11 {
         hasGreaterOrEqualOccupiedSeats: (number: Int, layout: Array<CharArray>, spacePoint: SpacePoint) -> Boolean,
         maxNumberOfOccupiedSeats: Int
     ): Boolean {
-        return previousLayout[spacePoint.y][spacePoint.x] == '#'
-                && hasGreaterOrEqualOccupiedSeats(maxNumberOfOccupiedSeats, previousLayout, spacePoint)
+        return previousLayout[spacePoint.y][spacePoint.x] == '#' &&
+            hasGreaterOrEqualOccupiedSeats(maxNumberOfOccupiedSeats, previousLayout, spacePoint)
     }
 
     private fun hasGreaterOrEqualAdjacentOccupiedSeats(
@@ -85,7 +85,7 @@ class Day11 {
         layout: Array<CharArray>,
         spacePoint: SpacePoint
     ): Int {
-        return DIRECTIONS.sumBy { getVisibleOccupiedSeatCount(layout, spacePoint, it) }
+        return DIRECTIONS.sumOf { getVisibleOccupiedSeatCount(layout, spacePoint, it) }
     }
 
     private fun getVisibleOccupiedSeatCount(

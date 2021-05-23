@@ -27,11 +27,11 @@ class Day1 {
                 val sumEntries: MutableList<Int> = sumTrios[i]
                     .toMutableList()
                     .apply { add(entry) }
-                val sum = sumEntries.reduce { acc, j ->  acc + j }
+                val sum = sumEntries.reduce { acc, j -> acc + j }
                 if (sum < 2020) {
                     sumTrios.add(sumEntries)
                 } else if (sum == 2020 && sumEntries.size == 3) {
-                    return sumEntries.reduce { acc, j ->  acc * j }
+                    return sumEntries.reduce { acc, j -> acc * j }
                 }
             }
 

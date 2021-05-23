@@ -47,7 +47,7 @@ class Day8 {
     private fun toInstructions(input: List<String>): List<Instruction> {
         return input.map {
             val (operation, value) = instructionRegex.find(it)!!.destructured
-            Instruction(enumValueOf(operation.toUpperCase()), value.toInt())
+            Instruction(enumValueOf(operation.uppercase()), value.toInt())
         }
     }
 }

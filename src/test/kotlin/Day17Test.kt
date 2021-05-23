@@ -1,7 +1,7 @@
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
-import kotlin.test.assertEquals
 
 internal class Day17Test {
 
@@ -36,6 +36,7 @@ internal class Day17Test {
         assertEquals(255, count)
     }
 
+    @Disabled
     @Test
     fun test3() {
         // Given

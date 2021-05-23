@@ -1,9 +1,9 @@
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.io.File
-import kotlin.test.assertEquals
 
 internal class Day15Test {
 
@@ -53,7 +53,7 @@ internal class Day15Test {
 
     companion object {
         @JvmStatic
-        private fun numbers() = listOf(
+        fun numbers() = listOf(
             Arguments.of(listOf(0, 3, 6), 2020, 436),
             Arguments.of(listOf(1, 3, 2), 2020, 1),
             Arguments.of(listOf(2, 1, 3), 2020, 10),
